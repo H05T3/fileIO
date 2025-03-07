@@ -9,21 +9,34 @@ int main(){
 	ifstream inFile;
 	string currentLine;
 	stringstream converter;
+	stringstream ss;
 	int number1;
 	int number2;
+	string sCounter;
 	string text;
 	inFile.open("data.csv");
 	while(getline(inFile, currentLine)){
-		//cout << currentLine << endl;
-		
+		ss.clear();
+		ss.str("");
 		converter.clear();
 		converter.str("");
 
-		converter << currentLine;
+		ss.str(currentLine);
+		
+		getline(ss, sCounter, ',');
+		converter << sCounter;
+		converter >> number1;
 
-		converter >> number1 >> number2 >> text;
+		converter.clear();
+		converter.str("");
 
-		cout << number1 + number2 << " " << text << endl;
+		getline(ss, sCounter, ',');
+		converter << sCounter;
+		converter >> number2;
+
+		getline(ss,text);
+
+//		cout <<"First number: " << number1<< "; Second number: "<<number2<<"; String: "<<text<<endl;
 
 		for(int i=0;i<(number1 + number2);i++){
 			cout << text << " ";
